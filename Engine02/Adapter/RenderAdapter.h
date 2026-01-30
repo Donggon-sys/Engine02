@@ -5,9 +5,12 @@
 //  Created by Chenruyi on 2026/1/31.
 //
 #pragma once
-#import <Foundation/Foundation.h>
+#import <Foundation/NSObject.h>
+#import <CoreGraphics/CGGeometry.h>
 
 @class MTKView;
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface RenderAdapter : NSObject
 
@@ -15,3 +18,4 @@
 
 @end
 
+NS_ASSUME_NONNULL_END

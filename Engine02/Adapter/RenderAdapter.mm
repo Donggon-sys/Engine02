@@ -6,7 +6,6 @@
 //
 
 #import "RenderAdapter.h"
-#include "Renderer.hpp"
 
 //MARK: - Metal-cpp的实现
 #define NS_PRIVATE_IMPLEMENTATION
@@ -17,6 +16,8 @@
 #include <Foundation/Foundation.hpp>
 #include <QuartzCore/QuartzCore.hpp>
 #include <Metal/Metal.hpp>
+
+#include "Renderer.hpp"
 
 @interface RenderAdapter () {
     Renderer *_pRender;
@@ -29,9 +30,15 @@
 
 - (instancetype)initWithMTKView:(MTKView *)view {
     if (self = [super init]) {
+        _pDevice = MTL::CreateSystemDefaultDevice();
         _pRender = new Renderer((__bridge MTK::View *)view);
     }
     return self;
+}
+
+-(void)dealloc {
+    _pDevice->release();
+    [super dealloc];
 }
 
 @end

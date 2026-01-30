@@ -5,6 +5,10 @@
 //  Created by Chenruyi on 2026/1/30.
 //
 
+#if !__has_feature(objc_arc)
+    #error "This file must be compiled with ARC enabled"
+#endif
+
 #include "Window.hpp"
 #include "RenderAdapter.h"
 
@@ -31,7 +35,7 @@ Window::Window() {
     view.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
     [nsWindow.contentView addSubview:view];
     
-    _render = [[RenderAdapter alloc] initWithMTKView:view];
+    pRender = [[RenderAdapter alloc] initWithMTKView:view];
 }
 
 void Window::run() {

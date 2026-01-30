@@ -8,7 +8,7 @@
 #include "Renderer.hpp"
 
 Renderer::Renderer(MTK::View *view) {
-    
+    pView = view;
 }
 
 Renderer::~Renderer() {

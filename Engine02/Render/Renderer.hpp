@@ -12,7 +12,7 @@
 
 class Renderer {
 private:
-    
+    MTK::View *pView;
     
 public:
     Renderer(MTK::View *view);

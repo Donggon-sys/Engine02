@@ -13,7 +13,7 @@
 class Window {
 private:
     GLFWwindow *pWindow;
-    RenderAdapter *_render;
+    RenderAdapter *pRender;
     
 public:
     Window();
