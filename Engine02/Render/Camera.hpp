@@ -5,9 +5,14 @@
 //  Created by Chenruyi on 2026/1/31.
 //
 
-#ifndef Camera_hpp
-#define Camera_hpp
+#pragma once
+#include <simd/simd.h>
 
-#include <stdio.h>
-
-#endif /* Camera_hpp */
+class Camera {
+private:
+    
+    
+public:
+    Camera();
+    ~Camera();
+};

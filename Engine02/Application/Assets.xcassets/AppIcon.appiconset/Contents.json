@@ -21,11 +21,13 @@
       "size" : "32x32"
     },
     {
+      "filename" : "皮卡丘128x128.heic",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "128x128"
     },
     {
+      "filename" : "皮卡丘256x256.heic",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "128x128"

@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RenderAdapter : NSObject
 
 -(instancetype)initWithMTKView:(MTKView *)view;
+- (void)drawInMTKView:(nonnull MTKView *)view;
 
 @end
 

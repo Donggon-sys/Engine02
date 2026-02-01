@@ -27,23 +27,42 @@ Window::Window() {
         glfwTerminate();
         exit(EXIT_FAILURE);
     }
-    
-    NSWindow *nsWindow = glfwGetCocoaWindow(pWindow);
-    CGRect frame = [nsWindow.contentView frame];
-    MTKView *view = [[MTKView alloc] initWithFrame:frame];
-    view.device = MTLCreateSystemDefaultDevice();
-    view.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
-    [nsWindow.contentView addSubview:view];
+    View _view;
+    view = _view.transfer(pWindow);
     
     pRender = [[RenderAdapter alloc] initWithMTKView:view];
 }
 
 void Window::run() {
+    const double targetFrameRate = 1.0/65.0;
+    double lastTime = glfwGetTime();
+    
     while (!glfwWindowShouldClose(pWindow)) {
+        //渲染
+        [pRender drawInMTKView:view];
+        double currentTime = glfwGetTime();
+        double elapsed = currentTime - lastTime;
+        double remaining = targetFrameRate - elapsed;
+        if (remaining > 0.0) {
+            glfwWaitEventsTimeout(remaining);
+        }
+        
         glfwPollEvents();
+        lastTime = glfwGetTime();
     }
 }
 
 Window::~Window() {
     glfwTerminate();
+}
+
+// View实现
+MTKView* View::transfer(GLFWwindow *window) {
+    NSWindow *nsWindow = glfwGetCocoaWindow(window);
+    CGRect frame = [nsWindow.contentView frame];
+    MTKView *view = [[MTKView alloc] initWithFrame:frame];
+    view.device = MTLCreateSystemDefaultDevice();
+    view.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+    [nsWindow.contentView addSubview:view];
+    return view;
 }

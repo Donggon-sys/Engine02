@@ -31,9 +31,13 @@
 - (instancetype)initWithMTKView:(MTKView *)view {
     if (self = [super init]) {
         _pDevice = MTL::CreateSystemDefaultDevice();
-        _pRender = new Renderer((__bridge MTK::View *)view);
+        _pRender = new Renderer( *(__bridge MTK::View *)view );
     }
     return self;
+}
+
+- (void)drawInMTKView:(nonnull MTKView *)view {
+    _pRender->draw((__bridge MTK::View *)view);
 }
 
 -(void)dealloc {

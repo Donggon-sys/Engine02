@@ -13,8 +13,15 @@
 class Renderer {
 private:
     MTK::View *pView;
+    MTL::Device *pDevice;
+    MTL::RenderPipelineState *trianglePSO;
+    MTL::Buffer *pTriangleBuffer;
+    MTL::CommandQueue *pCommandQueue;
+    simd::uint2 viewPortSize;
     
 public:
-    Renderer(MTK::View *view);
+    Renderer(MTK::View& view);
     ~Renderer();
+    void draw(MTK::View *view);
+    void drawableSizeWillChange(CGSize size);
 };
