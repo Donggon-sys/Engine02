@@ -34,7 +34,7 @@ Window::Window() {
 }
 
 void Window::run() {
-    const double targetFrameRate = 1.0/65.0;
+    const double targetFrameRate = 1.0/60.0;
     double lastTime = glfwGetTime();
     
     while (!glfwWindowShouldClose(pWindow)) {
